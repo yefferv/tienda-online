@@ -1,9 +1,16 @@
+import { ThemeProvider } from "@emotion/react"
+import Home from "./page/Home"
+import { theme } from "./styles/themes"
+
+
 const App = () => {
+    
 
   return (
-    <>
-      <h1>app</h1>
-    </>
+    <ThemeProvider theme={theme}>
+      <Home></Home>
+    </ThemeProvider>
+    
   )
 }
 
