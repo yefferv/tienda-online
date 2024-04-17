@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import CrGrid from './CrGrid';
 
 
 interface Props {
@@ -24,12 +25,12 @@ export default function CrModal({open, handleClose}: Props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
+          {"Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin"}
         </DialogTitle>
         <DialogContent>
+          <CrGrid></CrGrid>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+
           </DialogContentText>
         </DialogContent>
         <DialogActions>
