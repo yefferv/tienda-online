@@ -38,7 +38,7 @@ const Home = () => {
         )}
     </Box>
 
-    <h2>Lista de Productos</h2>
+    <h2>Prueba - Lista de Productos</h2>
       <ul>
         {products.map(product => (
           <li key={product.id}>
