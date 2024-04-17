@@ -45,7 +45,6 @@ const Home = () => {
             <h3>{product.title}</h3>
             <p>Precio: ${product.price}</p>
             <p>Categoría: {product.category}</p>
-            {/* Otros detalles del producto... */}
           </li>
         ))}
       </ul>
