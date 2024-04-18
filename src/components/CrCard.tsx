@@ -9,10 +9,10 @@ import { Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
 import { useState } from 'react';
 import CrModal from './CrModal';
+import { Product } from '../types/Product';
 
 
-
-export default function CrCard() {
+export default function CrCard({ product }: { product: Product }) {
     const [isCheck, setValor] = useState(true)
 
     const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ export default function CrCard() {
 
             }}
             alt='green iguana'
-            image="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg"
+            image= {product.image}
             title="green iguana"
             />
         <CardContent>

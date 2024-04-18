@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Grid } from "@mui/material"
 import CrCard from "../components/CrCard"
 import CrNavbar from "../components/CrNavbar"
 import { useEffect, useState } from "react";
@@ -33,21 +33,14 @@ const Home = () => {
         marginTop: 5,
         gap: 2
     }}>
-        {[1,2].map((item)=>
-            <CrCard key={item}/>
+        <Grid container spacing={2}>
+        {products.map((item)=>
+            <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+               <CrCard key={item.id} product={item}/>
+            </Grid>
         )}
+        </Grid>
     </Box>
-
-    <h2>Prueba - Lista de Productos</h2>
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            <h3>{product.title}</h3>
-            <p>Precio: ${product.price}</p>
-            <p>Categoría: {product.category}</p>
-          </li>
-        ))}
-      </ul>
     </>
     
   )
