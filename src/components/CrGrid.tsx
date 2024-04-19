@@ -12,7 +12,7 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-export default function ComplexGrid() {
+export default function CrGrid() {
   return (
     <Paper
       sx={{
