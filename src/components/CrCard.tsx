@@ -51,11 +51,10 @@ export default function CrCard({ product }: { product: Product }) {
             />
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            {product.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            {product.description}
             </Typography>
             <CrRating></CrRating>
         </CardContent>

@@ -1,9 +1,9 @@
-import { Box, Grid } from "@mui/material"
 import CrCard from "../components/CrCard"
 import CrNavbar from "../components/CrNavbar"
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../services/ProductService";
 import { Product } from "../types/Product";
+import { Box, Grid } from "@mui/material";
 
 
 
@@ -41,8 +41,6 @@ const Home = () => {
         )}
         </Grid>
     </Box>
-
-    
     </>
     
   )
