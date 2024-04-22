@@ -30,18 +30,21 @@ const Home = () => {
   return (
     <>
     <CrNavbar></CrNavbar>
-    <Box sx={{display:'flex',
-        marginTop: 5,
-        gap: 2
-    }}>
-        <Grid container spacing={2}>
-        {products.map((item)=>
-            <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
-               <CrCard key={item.id} product={item}/>
-            </Grid>
-        )}
-        </Grid>
-    </Box>
+      <Container maxWidth="lg">
+        <Box sx={{display:'flex',
+            marginTop: 5,
+            gap: 2
+        }}>
+            {loadin?<p>Loading...</p>:
+            <Grid container spacing={2}>
+            {data.map((item)=>
+                <Grid item key={item} xs={12} sm={6} md={4} lg={3} xl={6}>
+                  <CrCard product={item}/>
+                </Grid>
+            )}
+            </Grid>}
+        </Box>
+      </Container>
 
   
     </>
