@@ -9,7 +9,20 @@ import { Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
 import { useState } from 'react';
 import CrModal from './CrModal';
-import { Product } from '../types/Product';
+
+
+interface Product {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: {
+      rate: number;
+      count: number;
+    };
+  }
 
 
 export default function CrCard({ product }: { product: Product }) {
