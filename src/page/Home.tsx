@@ -3,26 +3,27 @@ import CrNavbar from "../components/CrNavbar"
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../services/ProductService";
 import { Product } from "../types/Product";
-import { Box, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 
 
 
 const Home = () => {
 
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [data, setdata] = useState([]);
+  const [loadin, setLoadin] = useState(false);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const productsData = await getAllProducts();
-        setProducts(productsData);
-      } catch (error) {
-        console.error('Error al obtener los productos:', error);
-      }
-    };
+    setLoadin(true)
+    fetch('https://fakestoreapi.com/products')
+        .then(res=>res.json())
+        .then(json=>setdata(json))
+        .catch(err=>console.log(err))
+        .finally(()=>{
+          setLoadin(false)
+          console.log('fetch finalizado')
 
-    fetchProducts();
+        })
   }, []);
 
 
@@ -41,6 +42,8 @@ const Home = () => {
         )}
         </Grid>
     </Box>
+
+  
     </>
     
   )
