@@ -1,16 +1,16 @@
 import CrCard from "../components/CrCard"
 import CrNavbar from "../components/CrNavbar"
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../services/ProductService";
 import { Product } from "../types/Product";
 import { Box, Container, Grid } from "@mui/material";
+import HomeLayaout from "./HomeLayaout";
 
 
 
 const Home = () => {
 
-
-  const [data, setdata] = useState([]);
+  
+  const [data, setdata] = useState<Product[]>([]);
   const [loadin, setLoadin] = useState(false);
 
   useEffect(() => {
@@ -28,8 +28,7 @@ const Home = () => {
 
 
   return (
-    <>
-    <CrNavbar></CrNavbar>
+    <HomeLayaout>
       <Container maxWidth="lg">
         <Box sx={{display:'flex',
             marginTop: 5,
@@ -38,8 +37,8 @@ const Home = () => {
             {loadin?<p>Loading...</p>:
             <Grid container spacing={2}>
             {data.map((item)=>
-                <Grid item key={item} xs={12} sm={6} md={4} lg={3} xl={6}>
-                  <CrCard product={item}/>
+                <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} xl={6}>
+                  <CrCard item = {item}/>
                 </Grid>
             )}
             </Grid>}
@@ -47,7 +46,7 @@ const Home = () => {
       </Container>
 
   
-    </>
+    </HomeLayaout>
     
   )
 }
