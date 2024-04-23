@@ -2,15 +2,16 @@ import React, { useEffect } from 'react'
 import HomeLayaout from './HomeLayaout'
 import { Button } from '@mui/material'
 import { useHistory, useParams } from 'react-router-dom'
-import { SignLanguage } from '@mui/icons-material'
-
-
 
 
 const DetalleProducto = () => 
   {
   const history = useHistory()
-  const { slug } = useParams()
+  interface Params {
+    slug: string; 
+  }
+
+  const { slug } : Params = useParams()
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${slug}`)
