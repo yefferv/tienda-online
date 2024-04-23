@@ -9,26 +9,19 @@ import { Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
 import { useState } from 'react';
 import CrModal from './CrModal';
+import { Product } from '../types/Product';
+import { useHistory } from 'react-router-dom';
 
 
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    description: string;
-    category: string;
-    image: string;
-    rating: {
-      rate: number;
-      count: number;
-    };
-  }
-
-
-export default function CrCard({ product }: { product: Product }) {
+interface Props {
+    item: Product
+}
+export default function CrCard({ item }: Props) {
     const [isCheck, setValor] = useState(true)
 
     const [open, setOpen] = useState(false);
+
+    const history = useHistory();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -36,6 +29,7 @@ export default function CrCard({ product }: { product: Product }) {
 
     const handleClose = () => {
         setOpen(false);
+        history.push(`/detalles/${item.id}`)
     };
     
     const handleCheck = ()=>{
@@ -59,15 +53,15 @@ export default function CrCard({ product }: { product: Product }) {
 
             }}
             alt='green iguana'
-            image= {product.image}
+            image= {item.image}
             title="green iguana"
             />
         <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-            {product.title}
+            {item.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            {product.description}
+            {item.description}
             </Typography>
             <CrRating></CrRating>
         </CardContent>
