@@ -12,7 +12,13 @@ const Img = styled('img')({
   maxHeight: '100%',
 });
 
-export default function CrGrid() {
+interface Props {
+  title: string;
+  precio: number;
+  image: string;
+}
+
+export default function CrGrid({title,precio,image }: Props) {
   return (
     <Paper
       sx={{
@@ -27,28 +33,21 @@ export default function CrGrid() {
       <Grid container spacing={2}>
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img alt="complex" src="https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg" />
+            <Img alt="complex" src={image}/>
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
-                Standard license
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                Full resolution 1920x1080 • JPEG
+              {title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                ID: 1030114
+              {precio}
               </Typography>
             </Grid>
           </Grid>
-          <Grid item>
-            <Typography variant="subtitle1" component="div">
-              $19.00
-            </Typography>
-          </Grid>
+        
         </Grid>
       </Grid>
     </Paper>

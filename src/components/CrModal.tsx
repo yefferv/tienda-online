@@ -10,10 +10,13 @@ import CrGrid from './CrGrid';
 
 interface Props {
     open: boolean;
-    handleClose: () => void
+    handleClose: () => void,
+    title: string;
+    precio: number;
+    image: string;
   }
 
-export default function CrModal({open, handleClose}: Props) {
+export default function CrModal({open, handleClose, title, precio, image}: Props) {
 
 
   return (
@@ -25,10 +28,9 @@ export default function CrModal({open, handleClose}: Props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin"}
         </DialogTitle>
         <DialogContent>
-          <CrGrid></CrGrid>
+          <CrGrid title={title}  precio = {precio}  image = {image}></CrGrid>
           <DialogContentText id="alert-dialog-description">
 
           </DialogContentText>
