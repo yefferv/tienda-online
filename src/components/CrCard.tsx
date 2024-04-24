@@ -75,7 +75,7 @@ export default function CrCard({ item }: Props) {
             
         </CardActions>
         </Card>
-        <CrModal open={open} handleClose={handleClose} ></CrModal>
+        <CrModal open={open} handleClose={handleClose} title={item.title} precio={item.price} image={item.image}></CrModal>
     </>
   );
 }
