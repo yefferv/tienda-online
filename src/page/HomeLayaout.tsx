@@ -4,12 +4,14 @@ import CrNavbar from '../components/CrNavbar'
 
 interface Props {
     children : React.ReactNode
+    numCard : number
+    handlePayment : () => void
 }
 
-const HomeLayaout = ({children}:Props) => {
+const HomeLayaout = ({children, numCard, handlePayment}:Props) => {
   return (
     <>
-      <CrNavbar/>
+      <CrNavbar numCard={numCard} handlePayment = {handlePayment}/>
       {children}
     </>
   )
