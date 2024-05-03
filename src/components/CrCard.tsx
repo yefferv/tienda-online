@@ -14,10 +14,12 @@ import { useHistory } from 'react-router-dom';
 
 
 interface Props {
-    item: Product
+    item: Product   
+    handleAddCard : (product : Product) => void
 }
-export default function CrCard({ item }: Props) {
+export default function CrCard({ item , handleAddCard}: Props) {
     const [isCheck, setValor] = useState(true)
+    //const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
 
     const [open, setOpen] = useState(false);
 
@@ -34,7 +36,10 @@ export default function CrCard({ item }: Props) {
     
     const handleCheck = ()=>{
         setValor(!isCheck)
+        handleAddCard(item)
     }
+
+    
 
   return (
     <>
