@@ -11,13 +11,15 @@ import { useState } from 'react';
 import CrModal from './CrModal';
 import { Product } from '../types/Product';
 import { useHistory } from 'react-router-dom';
+import { TurnLeft } from '@mui/icons-material';
 
 
 interface Props {
     item: Product   
     handleAddCard : (product : Product) => void
+    isVisible? : boolean
 }
-export default function CrCard({ item , handleAddCard}: Props) {
+export default function CrCard({ item , handleAddCard, isVisible = true}: Props) {
     const [isCheck, setValor] = useState(true)
     //const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
 
@@ -31,7 +33,7 @@ export default function CrCard({ item , handleAddCard}: Props) {
 
     const handleClose = () => {
         setOpen(false);
-        history.push(`/detalles/${item.id}`)
+        //history.push(`/detalles/${item.id}`)
     };
     
     const handleCheck = ()=>{
@@ -46,7 +48,7 @@ export default function CrCard({ item , handleAddCard}: Props) {
     
         <Card sx={{ maxWidth: 345 }}>
             <Stack direction="row" m={2} spacing={2}>
-                <CrChips></CrChips>
+                <CrChips visible = {isVisible} ></CrChips>
             </Stack>
         <CardMedia
             sx={{ height: 300 }}
@@ -66,7 +68,7 @@ export default function CrCard({ item , handleAddCard}: Props) {
             {item.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            {item.description}
+            {item.price}
             </Typography>
             <CrRating></CrRating>
         </CardContent>
@@ -80,7 +82,7 @@ export default function CrCard({ item , handleAddCard}: Props) {
             
         </CardActions>
         </Card>
-        <CrModal open={open} handleClose={handleClose} title={item.title} precio={item.price} image={item.image}></CrModal>
+        <CrModal open={open} handleClose={handleClose} title={item.title} description={item.description} image={item.image}></CrModal>
     </>
   );
 }

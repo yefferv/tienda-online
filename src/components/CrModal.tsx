@@ -12,11 +12,11 @@ interface Props {
     open: boolean;
     handleClose: () => void,
     title: string;
-    precio: number;
+    description: string;
     image: string;
   }
 
-export default function CrModal({open, handleClose, title, precio, image}: Props) {
+export default function CrModal({open, handleClose, title, description, image}: Props) {
 
 
   return (
@@ -30,15 +30,14 @@ export default function CrModal({open, handleClose, title, precio, image}: Props
         <DialogTitle id="alert-dialog-title">
         </DialogTitle>
         <DialogContent>
-          <CrGrid title={title}  precio = {precio}  image = {image}></CrGrid>
+          <CrGrid title={title}  description = {description}  image = {image}></CrGrid>
           <DialogContentText id="alert-dialog-description">
 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
           <Button onClick={handleClose} autoFocus>
-            Agree
+            Cerrar
           </Button>
         </DialogActions>
       </Dialog>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import HomeLayaout from './HomeLayaout'
 import { Button } from '@mui/material'
 import { useHistory, useParams } from 'react-router-dom'

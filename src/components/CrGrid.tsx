@@ -14,11 +14,11 @@ const Img = styled('img')({
 
 interface Props {
   title: string;
-  precio: number;
+  description: string;
   image: string;
 }
 
-export default function CrGrid({title,precio,image }: Props) {
+export default function CrGrid({title,description,image }: Props) {
   return (
     <Paper
       sx={{
@@ -43,7 +43,7 @@ export default function CrGrid({title,precio,image }: Props) {
               {title}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-              {precio}
+              {description}
               </Typography>
             </Grid>
           </Grid>
