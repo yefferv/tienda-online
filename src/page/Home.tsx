@@ -5,6 +5,7 @@ import useApi from "./hook/useApi";
 import CenteredCircularProgress from "../components/CenteredCircularProgress";
 import { useState } from "react";
 import { Product } from "../types/Product";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -14,22 +15,21 @@ const Home = () => {
 
   const handleAddCard = (product: Product) => {
     setAddCardPayment(prevAddCardPayment => {
-        // Verifica si el producto ya está en el arreglo
         const existingIndex = prevAddCardPayment.findIndex(item => item.id === product.id);
     
-        // Si el producto ya existe, lo eliminamos
         if (existingIndex !== -1) {
             return prevAddCardPayment.filter(item => item.id !== product.id);
         } else {
-            // Si el producto no existe, lo añadimos
             return [...prevAddCardPayment, product];
         }
     });
-    console.log(addCardPayment); // Aquí está el estado actualizado
   }
+
+  const history = useHistory();
 
   const handlePayment = () =>{
     console.log(addCardPayment)
+    history.push({pathname :'/carrito', state: { addCardPayment }})
   }
 
   return (

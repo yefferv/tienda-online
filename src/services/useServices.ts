@@ -14,6 +14,14 @@ const useServices = (url: string) => {
       try {
         const data = await fetch(url)
         const response = await data.json()
+
+        /*const formater = response.map((item:Product)=>{
+          return {
+            ...item,
+            price:  `$${item.price}`
+          }
+        })*/
+
         setData(response)
       }catch(error){
         setError(true)

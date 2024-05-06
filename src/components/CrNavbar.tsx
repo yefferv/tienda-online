@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useHistory } from 'react-router-dom';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -68,6 +69,8 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
+  const history = useHistory()
+
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -79,6 +82,10 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuCloseSesion = () => {
+    history.push('/')
   };
 
   const handleMenuClose = () => {
@@ -107,7 +114,7 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuCloseSesion}>Cerrar sesión</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
@@ -140,7 +147,7 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Cerrar sesión</p>
       </MenuItem>
     </Menu>
   );
