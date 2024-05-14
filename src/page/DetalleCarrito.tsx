@@ -20,9 +20,18 @@ const DetalleCarrito = () =>
 
     const history = useHistory()
 
+    console.log(addCardPayment)
+    const totalPrecio: number = addCardPayment.reduce((total, producto) => total + producto.price, 0);
+    console.log(totalPrecio)
+
+
         
     return (
         <HomeLayaout numCard= {addCardPayment.length} handlePayment = {()=>{ }}>
+            <Box mt={5} display={'flex'} gap={2} justifyContent={'center'} >
+                <Button>TOTAL = {totalPrecio}</Button>
+                <Button variant="contained">Pagar</Button>
+            </Box>
             <Container maxWidth="lg">
                 <Box mt={5} display={'flex'} gap={2} >
                     

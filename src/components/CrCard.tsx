@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CrChips from './CrChips';
 import CrRating from './CrRating';
-import { Stack } from '@mui/material';
+import { IconButton, Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
 import { useState } from 'react';
 import CrModal from './CrModal';
@@ -70,7 +70,8 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
             <Typography variant="body2" color="text.secondary">
             {item.price}
             </Typography>
-            <CrRating></CrRating>
+            {isVisible ? (<CrRating></CrRating>):''}
+            
         </CardContent>
         <CardActions sx={{
             display:'flex',
@@ -78,7 +79,9 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
 
         }}>
             <CrBtnAccion isShow isCheck={isCheck} handleShow={handleClickOpen } ></CrBtnAccion>
-            <CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} ></CrBtnAccion>
+            {isVisible ? (<CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} ></CrBtnAccion>):
+            ('')
+            }
             
         </CardActions>
         </Card>

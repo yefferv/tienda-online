@@ -1,15 +1,17 @@
 import CrCard from "../components/CrCard"
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Button, Container, Grid } from "@mui/material";
 import HomeLayaout from "./HomeLayaout";
 import useApi from "./hook/useApi";
 import CenteredCircularProgress from "../components/CenteredCircularProgress";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Product } from "../types/Product";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../Auth/AuthContext";
 
 
 
 const Home = () => {
+  const {user} = useContext(AuthContext)
   const {data, loading} = useApi(import.meta.env.VITE_API_URL)
   const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
 
@@ -41,7 +43,7 @@ const Home = () => {
             :
             <Grid container spacing={2}>
             {data.map((item : any)=>
-                <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} xl={6}>
+                <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} xl={4}>
                   <CrCard item = {item} handleAddCard = {handleAddCard}/>
                 </Grid>
             )}
