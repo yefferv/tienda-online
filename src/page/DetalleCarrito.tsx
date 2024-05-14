@@ -37,7 +37,7 @@ const DetalleCarrito = () =>
                     
                     <Grid container spacing={2}>
                     {addCardPayment.map((item : any)=>
-                        <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} xl={6}>
+                        <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} xl={4}>
                         <CrCard item = {item} handleAddCard = {()=>{}}  isVisible = {false}/>
                         </Grid>
                     )}
