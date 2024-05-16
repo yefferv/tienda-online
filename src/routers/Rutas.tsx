@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import DetalleProducto from '../page/DetalleProducto'
 import Home from '../page/Home'
 import DetalleCarrito from '../page/DetalleCarrito'
@@ -13,17 +13,17 @@ const Rutas = () => {
 
   return (
         <Switch>
+          <>
             <Route exact path="/login">
               <Login />
-            </Route>            
-            <Route exact path="/admin">
-              <Admin />
             </Route>
-         
-            <Route exact path="/">
+            <Route exact path="/admin">
               <PrivateRouter>
-                <Home />
+               <Admin />
               </PrivateRouter>
+            </Route>
+            <Route exact path="/">
+                <Home />
             </Route>
             <Route exact path="/home">
               <Home />
@@ -34,6 +34,10 @@ const Rutas = () => {
             <Route exact path="/carrito">
               <DetalleCarrito/>
             </Route>
+            <Redirect to="/home" />
+
+          </>  
+        
         </Switch>
   )
 }

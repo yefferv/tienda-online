@@ -85,7 +85,7 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
   };
 
   const handleMenuCloseSesion = () => {
-    history.push('/')
+    history.push('/Login')
   };
 
   const handleMenuClose = () => {
