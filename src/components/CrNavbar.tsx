@@ -17,6 +17,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Auth/AuthContext';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -69,6 +71,7 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
+  
   const history = useHistory()
 
   const isMenuOpen = Boolean(anchorEl);

@@ -12,7 +12,7 @@ const initialValues = { user: '', password: '' }
 const FormLogin = () => {
 
   const history = useHistory()
-  const { Login } = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
 
   const Signupschema = Yup.object().shape({
     user: Yup.string().required('Required'),
@@ -20,9 +20,23 @@ const FormLogin = () => {
   });
 
   const handleFetch = async (values : any) =>{
+    
     setTimeout(()=>{
-      Login(values.user)
-    })
+      const data ={
+        statusCode:200,
+        message:'OK',
+        user:{
+          id:'123456',
+          name: values.user
+        },
+        token:'1234567'
+      }
+      if (data.statusCode === 200) {
+        login(data.user)
+        history.push('/admin')
+      }
+    },2000)
+   
   }
 
   return (
