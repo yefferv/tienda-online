@@ -70,7 +70,7 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
-
+  const { logout } = useContext(AuthContext)
   
   const history = useHistory()
 
@@ -86,6 +86,7 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
   };
 
   const handleMenuCloseSesion = () => {
+    logout()
     history.push('/Login')
   };
 
