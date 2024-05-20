@@ -1,15 +1,20 @@
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom'
 import DetalleProducto from '../page/DetalleProducto'
 import Home from '../page/Home'
 import DetalleCarrito from '../page/DetalleCarrito'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Login from '../page/Login/Login'
 import Admin from '../page/Admin'
 import PrivateRouter from './PrivateRouter'
 
 
 const Rutas = () => {
-  const [userType]= useState('admin')
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log('Current route:', location.pathname);
+  }, [location]);
+
 
   return (
         <Switch>
@@ -34,8 +39,7 @@ const Rutas = () => {
             <Route exact path="/carrito">
               <DetalleCarrito/>
             </Route>
-            <Redirect to="/home" />
-
+            
           </>  
         
         </Switch>

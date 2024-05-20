@@ -1,5 +1,6 @@
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { useContext, useState } from 'react'
+import { AuthContext } from '../Auth/AuthContext'
 
 
 
@@ -8,9 +9,10 @@ interface PrivateRouterProps {
   }
   
   const PrivateRouter = ({children}:PrivateRouterProps)=>{
-    //const {AuthState} =  useContext(AuthContext)
-    //return (AuthState.isAuth ? children : <Redirect to='/login'/>)}
-    return (children)
+    const {isAuth} =  useContext(AuthContext)
+    console.log('isAuth', isAuth)
+    return (isAuth ? children : <Redirect to='/login'/>)
   }
+    
 
   export default  PrivateRouter

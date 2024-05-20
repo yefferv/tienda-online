@@ -41,7 +41,13 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
         handleAddCard(item)
     }
 
-    
+    function formatDescription(description: string, maxLength: number): string {
+        if (description.length > maxLength) {
+          return description.substring(0, maxLength) + "...";
+        } else {
+          return description.padEnd(maxLength, ' ');
+        }
+      }
 
   return (
     <>
@@ -64,10 +70,10 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
             title="green iguana"
             />
         <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            {item.title}
+            <Typography gutterBottom variant="h5" component="div" style={{}}>
+                {formatDescription(item.title,23)}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary">
             {item.price}
             </Typography>
             {isVisible ? (<CrRating></CrRating>):''}
