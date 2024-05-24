@@ -3,16 +3,34 @@ import { Box, Button, Container, Grid } from "@mui/material";
 import HomeLayaout from "./HomeLayaout";
 import useApi from "./hook/useApi";
 import CenteredCircularProgress from "../components/CenteredCircularProgress";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Product } from "../types/Product";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../Auth/AuthContext";
+import { PaymentContext } from "../store/PaymentContext";
+import useServices from "../services/useServices";
 
 
 
 const Home = () => {
   const {user} = useContext(AuthContext)
-  const {data, loading} = useApi(import.meta.env.VITE_API_URL)
+  //const {setProduct, product} = useContext(PaymentContext)
+  //const {data, loading} = useApi(import.meta.env.VITE_API_URL)
+  const {handleFetch, data, loading, error} = useServices()
+
+  useEffect(()=>{
+    handleFetch()
+  },[])
+
+  if (error) {
+    return (
+      <div>
+        <h1>Error</h1>
+      </div>
+
+    )
+  }
+
   const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
 
   const handleAddCard = (product: Product) => {
