@@ -1,52 +1,41 @@
-import { useEffect, useState } from "react"
-import { Product } from "../types/Product"
+import { useReducer } from "react"
+import { TypeActions, initialState, reducer } from "./clients/reducerService"
 import AxiosClient from "./clients/AxiosClient"
 
 const useServices = () => {
+    const [state, dispach] = useReducer(reducer,initialState)
 
-    const [data, setData] = useState<Product[]>([])
-    const [loading, setLoading] = useState<boolean>(false)
-    const [error, setError] = useState<boolean>(false)
-
-    
     const handleFetch = async () => {
-      setLoading(true)
+      dispach({type:TypeActions.LOADING, payload: true})
       try {
         const response = await AxiosClient("products")
-        setData(response.data)
-        
+        dispach({type:TypeActions.SUCCESS_DATA, payload: response.data})
       } catch (error) {
-        setError(true)
+        dispach({type:TypeActions.ERROR, payload: error})
       }finally{
-        setLoading(false)
+        dispach({type:TypeActions.LOADING, payload: false})
       }
-      
-
-      /*try {
-        const data = await fetch(url)
-        const response = await data.json()
-
-        /*const formater = response.map((item:Product)=>{
-          return {
-            ...item,
-            price:  `$${item.price}`
-          }
-        })
-
-        setData(response)
-      }catch(error){
-        setError(true)
-      }finally{
-        setLoading(false)
-      }*/
       
     }
 
+    const handleFetchbyId = async ({id}:{id:string}) => {
+      dispach({type:TypeActions.LOADING, payload: true})
+      try {
+        const response = await AxiosClient("products/" + id)
+        dispach({type:TypeActions.SUCCESS_DATA_BY_ID, payload: response.data})      
+      } catch (error) {
+        dispach({type:TypeActions.ERROR, payload: error})
+      }finally{
+        dispach({type:TypeActions.LOADING, payload: false})
+      }
+      
+    }
+
+
   return {
-    data,
     handleFetch,
-    loading,
-    error
+    handleFetchbyId,
+    state
   }
 }
 

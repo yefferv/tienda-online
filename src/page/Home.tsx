@@ -16,13 +16,13 @@ const Home = () => {
   const {user} = useContext(AuthContext)
   //const {setProduct, product} = useContext(PaymentContext)
   //const {data, loading} = useApi(import.meta.env.VITE_API_URL)
-  const {handleFetch, data, loading, error} = useServices()
+  const {handleFetch, state} = useServices()
 
   useEffect(()=>{
     handleFetch()
   },[])
 
-  if (error) {
+  if (state.error) {
     return (
       <div>
         <h1>Error</h1>
@@ -56,11 +56,11 @@ const Home = () => {
     <HomeLayaout numCard= {addCardPayment.length} handlePayment = {handlePayment}>
       <Container maxWidth="lg">
         <Box mt={5} display={'flex'} gap={2} >
-            {loading?
+            {state.loading?
             <CenteredCircularProgress />
             :
             <Grid container spacing={2}>
-            {data.map((item : any)=>
+            {state.data.map((item : any)=>
                 <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} xl={4}>
                   <CrCard item = {item} handleAddCard = {handleAddCard}/>
                 </Grid>

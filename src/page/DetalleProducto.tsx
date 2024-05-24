@@ -2,11 +2,14 @@ import { useEffect } from 'react'
 import HomeLayaout from './HomeLayaout'
 import { Button } from '@mui/material'
 import { useHistory, useParams } from 'react-router-dom'
+import useServices from '../services/useServices'
 
 
 const DetalleProducto = () => 
   {
   const history = useHistory()
+  const {state, handleFetchbyId} = useServices()
+
   interface Params {
     slug: string; 
   }
@@ -14,9 +17,7 @@ const DetalleProducto = () =>
   const { slug } : Params = useParams()
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${slug}`)
-        .then(res=>res.json())
-        .then(data=>console.log(data))
+    handleFetchbyId({id : slug})
   }, [slug]);
   
   return (
@@ -28,6 +29,8 @@ const DetalleProducto = () =>
         alignItems:'center',
         height:'100vh'
         }}>
+
+      <p>{ state.loading }</p>
 
       <h1>{ slug }</h1>
       <Button onClick={()=>history.push('/Home')}>ir atras {' '}
