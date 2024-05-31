@@ -1,13 +1,11 @@
 import CrCard from "../components/CrCard"
 import { Box, Button, Container, Grid } from "@mui/material";
 import HomeLayaout from "./HomeLayaout";
-import useApi from "./hook/useApi";
 import CenteredCircularProgress from "../components/CenteredCircularProgress";
 import { useContext, useEffect, useState } from "react";
 import { Product } from "../types/Product";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../Auth/AuthContext";
-import { PaymentContext } from "../store/PaymentContext";
 import useServices from "../services/useServices";
 
 
@@ -48,7 +46,6 @@ const Home = () => {
   const history = useHistory();
 
   const handlePayment = () =>{
-    console.log(addCardPayment)
     history.push({pathname :'/carrito', state: { addCardPayment }})
   }
 
@@ -59,6 +56,7 @@ const Home = () => {
             {state.loading?
             <CenteredCircularProgress />
             :
+            
             <Grid container spacing={2}>
             {state.data.map((item : any)=>
                 <Grid item key={item.id} xs={12} sm={6} md={4} lg={3} xl={4}>

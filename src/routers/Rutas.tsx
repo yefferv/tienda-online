@@ -12,7 +12,6 @@ const Rutas = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log('Current route:', location.pathname);
   }, [location]);
 
 

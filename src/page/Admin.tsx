@@ -5,7 +5,7 @@ import HomeLayaout from './HomeLayaout'
 const Admin = () => {
   const {user} = useContext(AuthContext)
 
-  console.log('paso por aca')
+  
   return (
     <div>
       <HomeLayaout numCard={1} handlePayment = {()=>{ }}>

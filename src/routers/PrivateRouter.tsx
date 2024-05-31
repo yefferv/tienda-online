@@ -10,7 +10,6 @@ interface PrivateRouterProps {
   
   const PrivateRouter = ({children}:PrivateRouterProps)=>{
     const {isAuth} =  useContext(AuthContext)
-    console.log('isAuth', isAuth)
     return (isAuth ? children : <Redirect to='/login'/>)
   }
     

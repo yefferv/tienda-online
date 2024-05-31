@@ -45,7 +45,7 @@ const FormLogin = () => {
         initialValues={initialValues}
         validationSchema={Signupschema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values)
+          
           handleFetch(values)
           history.push('/Admin')
         }}

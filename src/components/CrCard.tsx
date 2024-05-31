@@ -12,6 +12,7 @@ import CrModal from './CrModal';
 import { Product } from '../types/Product';
 import { useHistory } from 'react-router-dom';
 import { TurnLeft } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 interface Props {
@@ -86,7 +87,7 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
         }}>
             <CrBtnAccion isShow isCheck={isCheck} handleShow={handleClickOpen } ></CrBtnAccion>
             {isVisible ? (<CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} ></CrBtnAccion>):
-            ('')
+            (<CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} visibleBtnDelete></CrBtnAccion>)
             }
             
         </CardActions>
