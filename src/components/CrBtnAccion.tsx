@@ -30,7 +30,7 @@ const CrBtnAccion = ({isCheck,handleCheck,handleShow,handleAddCard,isShow = fals
        
         (
           visibleBtnDelete ? (
-            <IconButton onClick={handleAddCard}>
+            <IconButton onClick={handleCheck}>
               <DeleteIcon />
             </IconButton>
         ) : (<IconButton onClick={handleCheck}>{

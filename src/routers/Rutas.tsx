@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import Login from '../page/Login/Login'
 import Admin from '../page/Admin'
 import PrivateRouter from './PrivateRouter'
+import PaymentProvider from '../store/payment/PaymentProvider'
 
 
 const Rutas = () => {
@@ -27,7 +28,7 @@ const Rutas = () => {
               </PrivateRouter>
             </Route>
             <Route exact path="/">
-                <Home />
+                <Home />                
             </Route>
             <Route exact path="/home">
               <Home />

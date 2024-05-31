@@ -7,12 +7,13 @@ import { Product } from "../types/Product";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../Auth/AuthContext";
 import useServices from "../services/useServices";
+import { PaymentContext } from "../store/payment/PaymentContext";
 
 
 
 const Home = () => {
   const {user} = useContext(AuthContext)
-  //const {setProduct, product} = useContext(PaymentContext)
+  const {setProduct,removeProduct, products} = useContext(PaymentContext)
   //const {data, loading} = useApi(import.meta.env.VITE_API_URL)
   const {handleFetch, state} = useServices()
 
@@ -29,28 +30,26 @@ const Home = () => {
     )
   }
 
-  const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
+  //const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
 
   const handleAddCard = (product: Product) => {
-    setAddCardPayment(prevAddCardPayment => {
-        const existingIndex = prevAddCardPayment.findIndex(item => item.id === product.id);
+    const existingIndex = products.findIndex(item => item.id === product.id);
     
-        if (existingIndex !== -1) {
-            return prevAddCardPayment.filter(item => item.id !== product.id);
-        } else {
-            return [...prevAddCardPayment, product];
-        }
-    });
+    if (existingIndex !== -1) {
+      removeProduct(product.id);
+    } else {
+      setProduct(product)
+    }
   }
 
   const history = useHistory();
 
   const handlePayment = () =>{
-    history.push({pathname :'/carrito', state: { addCardPayment }})
+    history.push({pathname :'/carrito', state: { products }})
   }
 
   return (
-    <HomeLayaout numCard= {addCardPayment.length} handlePayment = {handlePayment}>
+    <HomeLayaout handlePayment = {handlePayment}>
       <Container maxWidth="lg">
         <Box mt={5} display={'flex'} gap={2} >
             {state.loading?

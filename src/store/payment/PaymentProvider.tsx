@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { PaymentContext } from './PaymentContext'
-import { Product } from '../types/Product'
+import { Product } from '../../types/Product'
 
 
 interface PaymentContextProps {
@@ -22,11 +22,16 @@ const PaymentProvider = ({children}: PaymentContextProps) => {
     const setProduct = (product:Product)=>{
          setProducts([...products, product])
     }
+
+    const removeProduct = (productId: number) => {
+        setProducts(products.filter(product => product.id !== productId));
+      };
             
     return (
         <PaymentContext.Provider value = {{
-            product:products,
-            setProduct
+            products:products,
+            setProduct,
+            removeProduct
         }}>
         {children}
         </PaymentContext.Provider>

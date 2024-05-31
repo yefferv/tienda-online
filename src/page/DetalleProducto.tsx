@@ -21,7 +21,7 @@ const DetalleProducto = () =>
   }, [slug]);
   
   return (
-    <HomeLayaout numCard={1} handlePayment = {()=>{ }}>
+    <HomeLayaout handlePayment = {()=>{ }}>
       <div style={{
         display : 'flex',
         flexDirection :'column',

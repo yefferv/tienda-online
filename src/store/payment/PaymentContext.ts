@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { Product } from '../types/Product'
+import { Product } from '../../types/Product'
 
 export interface IUser {
   id:string
@@ -8,7 +8,8 @@ export interface IUser {
 
 export interface PaymentContextProps {
     setProduct: (item: Product)=> void
-    product : Product[]
+    removeProduct: (productId: number)=> void
+    products : Product[]
   
 }
 
