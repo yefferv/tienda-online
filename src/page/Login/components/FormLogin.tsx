@@ -1,7 +1,10 @@
+import { Login } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
 import { Formik } from 'formik';
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
+import { AuthContext } from '../../../Auth/AuthContext';
 
 
 const initialValues = { user: '', password: '' }
@@ -9,11 +12,32 @@ const initialValues = { user: '', password: '' }
 const FormLogin = () => {
 
   const history = useHistory()
+  const { login } = useContext(AuthContext)
 
   const Signupschema = Yup.object().shape({
     user: Yup.string().required('Required'),
     password: Yup.string().required('Required'),
   });
+
+  const handleFetch = async (values : any) =>{
+    
+    setTimeout(()=>{
+      const data ={
+        statusCode:200,
+        message:'OK',
+        user:{
+          id:'123456',
+          name: values.user
+        },
+        token:'1234567'
+      }
+      if (data.statusCode === 200) {
+        login(data.user)
+        history.push('/admin')
+      }
+    },2000)
+   
+  }
 
   return (
     <div>
@@ -21,8 +45,9 @@ const FormLogin = () => {
         initialValues={initialValues}
         validationSchema={Signupschema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values)
-            history.push('/home')
+          
+          handleFetch(values)
+          history.push('/Admin')
         }}
       >
         {({

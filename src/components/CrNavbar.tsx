@@ -17,6 +17,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../Auth/AuthContext';
+import { PaymentContext } from '../store/payment/PaymentContext';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -60,21 +63,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 interface Props {
-  numCard : number
   handlePayment : () => void
 }
 
-export default function CrNavbar({numCard, handlePayment}: Props) {
+export default function CrNavbar({handlePayment}: Props) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
-
+  const { logout } = useContext(AuthContext)
+  const {products} = useContext(PaymentContext)
+  
   const history = useHistory()
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  console.log('contador ::', numCard)
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -85,7 +87,8 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
   };
 
   const handleMenuCloseSesion = () => {
-    history.push('/')
+    logout()
+    history.push('/Login')
   };
 
   const handleMenuClose = () => {
@@ -190,7 +193,7 @@ export default function CrNavbar({numCard, handlePayment}: Props) {
               color="inherit"
               onClick={handlePayment}
             >
-              <Badge badgeContent={numCard} color="error">
+              <Badge badgeContent={products.length} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

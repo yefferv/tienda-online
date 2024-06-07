@@ -5,13 +5,16 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CrChips from './CrChips';
 import CrRating from './CrRating';
-import { Stack } from '@mui/material';
+import { IconButton, Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CrModal from './CrModal';
 import { Product } from '../types/Product';
 import { useHistory } from 'react-router-dom';
 import { TurnLeft } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { PaymentContext } from '../store/payment/PaymentContext';
+import CrCounter from './CrCounter';
 
 
 interface Props {
@@ -21,7 +24,16 @@ interface Props {
 }
 export default function CrCard({ item , handleAddCard, isVisible = true}: Props) {
     const [isCheck, setValor] = useState(true)
+    const {setProduct, removeProduct, products} = useContext(PaymentContext)
+    
     //const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
+
+    useEffect(() => {
+        const isProductInCart = products.some(product => product.id === item.id);
+        setValor(!isProductInCart); 
+      }, [products, item.id]);
+    
+    
 
     const [open, setOpen] = useState(false);
 
@@ -41,7 +53,19 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
         handleAddCard(item)
     }
 
-    
+    const removeProduct1 = ()=>{
+        console.log('click ', item.id)
+        removeProduct(item.id)
+
+    }
+
+    function formatDescription(description: string, maxLength: number): string {
+        if (description.length > maxLength) {
+          return description.substring(0, maxLength) + "...";
+        } else {
+          return description.padEnd(maxLength, ' ');
+        }
+      }
 
   return (
     <>
@@ -64,13 +88,14 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
             title="green iguana"
             />
         <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            {item.title}
+            <Typography gutterBottom variant="h5" component="div" style={{}}>
+                {formatDescription(item.title,23)}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary">
             {item.price}
             </Typography>
-            <CrRating></CrRating>
+            {isVisible ? (<CrRating></CrRating>):''}
+            
         </CardContent>
         <CardActions sx={{
             display:'flex',
@@ -78,7 +103,13 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
 
         }}>
             <CrBtnAccion isShow isCheck={isCheck} handleShow={handleClickOpen } ></CrBtnAccion>
-            <CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} ></CrBtnAccion>
+            {isVisible ? (""):
+            (<CrCounter></CrCounter>)
+            }
+            
+            {isVisible ? (<CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} ></CrBtnAccion>):
+            (<CrBtnAccion isCheck={isCheck} handleCheck={removeProduct1} visibleBtnDelete></CrBtnAccion>)
+            }
             
         </CardActions>
         </Card>
