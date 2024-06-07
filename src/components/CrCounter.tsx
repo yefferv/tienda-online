@@ -27,10 +27,6 @@ const CrCounter = () => {
         <AddIcon />
       </IconButton>
 
-      <IconButton aria-label="delete">
-        <DeleteIcon />
-      </IconButton>
-
     </Box>
   );
 };

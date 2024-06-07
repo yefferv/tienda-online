@@ -7,13 +7,14 @@ import CrChips from './CrChips';
 import CrRating from './CrRating';
 import { IconButton, Stack } from '@mui/material';
 import CrBtnAccion from './CrBtnAccion';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CrModal from './CrModal';
 import { Product } from '../types/Product';
 import { useHistory } from 'react-router-dom';
 import { TurnLeft } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { PaymentContext } from '../store/payment/PaymentContext';
+import CrCounter from './CrCounter';
 
 
 interface Props {
@@ -26,6 +27,13 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
     const {setProduct, removeProduct, products} = useContext(PaymentContext)
     
     //const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
+
+    useEffect(() => {
+        const isProductInCart = products.some(product => product.id === item.id);
+        setValor(!isProductInCart); 
+      }, [products, item.id]);
+    
+    
 
     const [open, setOpen] = useState(false);
 
@@ -95,6 +103,10 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
 
         }}>
             <CrBtnAccion isShow isCheck={isCheck} handleShow={handleClickOpen } ></CrBtnAccion>
+            {isVisible ? (""):
+            (<CrCounter></CrCounter>)
+            }
+            
             {isVisible ? (<CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} ></CrBtnAccion>):
             (<CrBtnAccion isCheck={isCheck} handleCheck={removeProduct1} visibleBtnDelete></CrBtnAccion>)
             }

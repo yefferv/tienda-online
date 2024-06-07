@@ -40,6 +40,8 @@ const Home = () => {
     } else {
       setProduct(product)
     }
+
+    console.log("arreglo =>",products)
   }
 
   const history = useHistory();
