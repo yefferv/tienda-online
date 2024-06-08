@@ -26,10 +26,15 @@ const DetalleCarrito = () =>
         history.push('/home')
       };
     
+    const totalPrecio: number = parseFloat(
+      products.reduce((total, producto) => total + (producto.price * producto.quantity), 0).toFixed(2)
+    );
 
-
-        
-    const totalPrecio: number = products.reduce((total, producto) => total + producto.price, 0);
+    useEffect(() => {
+      if (products.length === 0) {
+        history.push('/home');
+      }
+    }, [products, history]);
             
     return (
         <HomeLayaout handlePayment = {()=>{ }}>

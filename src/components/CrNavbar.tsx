@@ -86,9 +86,18 @@ export default function CrNavbar({handlePayment}: Props) {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuCloseSesion = () => {
+  const handleMenuAccount = () => {
+    history.push('/admin')
+  };
+
+  const handleReturnHome = () => {
+    history.push('/')
+  };
+
+
+  const handleCloseSesion = () => {
     logout()
-    history.push('/Login')
+    handleReturnHome()
   };
 
   const handleMenuClose = () => {
@@ -117,8 +126,8 @@ export default function CrNavbar({handlePayment}: Props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuCloseSesion}>Cerrar sesión</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuAccount}>My account</MenuItem>
+      <MenuItem onClick={handleCloseSesion}>Cerrar sesión</MenuItem>
     </Menu>
   );
 
@@ -159,12 +168,13 @@ export default function CrNavbar({handlePayment}: Props) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+        <IconButton
             size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={handleReturnHome}
           >
             <MenuIcon />
           </IconButton>

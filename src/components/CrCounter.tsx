@@ -4,15 +4,26 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const CrCounter = () => {
-  const [count, setCount] = useState(1);
+interface CrCounterProps {
+  initialCount: number;
+  onCountChange: (newCount: number) => void;
+}
+
+const CrCounter = ({ initialCount, onCountChange }: CrCounterProps) => {
+  const [count, setCount] = useState(initialCount || 1);
 
   const handleIncrement = () => {
     setCount((prevCount) => prevCount + 1);
+    onCountChange && onCountChange(count + 1);
   };
 
+  
   const handleDecrement = () => {
-    setCount((prevCount) => (prevCount > 1 ? prevCount - 1 : prevCount));
+    if (count > 1) {
+      const newCount = count - 1;
+      setCount(newCount);
+      onCountChange && onCountChange(newCount);
+    }
   };
 
   return (

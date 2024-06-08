@@ -26,12 +26,21 @@ const PaymentProvider = ({children}: PaymentContextProps) => {
     const removeProduct = (productId: number) => {
         setProducts(products.filter(product => product.id !== productId));
       };
+
+    const updateProductQuantity = (id: number, quantity: number) => {
+        setProducts((prevProducts) =>
+          prevProducts.map((product) =>
+            product.id === id ? { ...product, quantity } : product
+          )
+        );
+      };
             
     return (
         <PaymentContext.Provider value = {{
             products:products,
             setProduct,
-            removeProduct
+            removeProduct,
+            updateProductQuantity
         }}>
         {children}
         </PaymentContext.Provider>
