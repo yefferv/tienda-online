@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import { Button } from '@mui/material';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -45,7 +46,9 @@ export default function CrGrid({title,description,image }: Props) {
               <Typography variant="body2" color="text.secondary">
               {description}
               </Typography>
+              
             </Grid>
+            
           </Grid>
         
         </Grid>

@@ -14,9 +14,10 @@ interface Props {
     title: string;
     description: string;
     image: string;
+    nombreButton: string;
   }
 
-export default function CrModal({open, handleClose, title, description, image}: Props) {
+export default function CrModal({open, handleClose, title, description, image, nombreButton}: Props) {
 
 
   return (
@@ -30,14 +31,15 @@ export default function CrModal({open, handleClose, title, description, image}: 
         <DialogTitle id="alert-dialog-title">
         </DialogTitle>
         <DialogContent>
-          <CrGrid title={title}  description = {description}  image = {image}></CrGrid>
+          <CrGrid title={title}  description = {description}  image = {image}>
+          </CrGrid>
           <DialogContentText id="alert-dialog-description">
 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} autoFocus>
-            Cerrar
+            {nombreButton}
           </Button>
         </DialogActions>
       </Dialog>

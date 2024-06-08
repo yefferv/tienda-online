@@ -34,13 +34,18 @@ const PaymentProvider = ({children}: PaymentContextProps) => {
           )
         );
       };
+    
+    const clearProducts = () => {
+        setProducts([])
+    }
             
     return (
         <PaymentContext.Provider value = {{
             products:products,
             setProduct,
             removeProduct,
-            updateProductQuantity
+            updateProductQuantity,
+            clearProducts
         }}>
         {children}
         </PaymentContext.Provider>

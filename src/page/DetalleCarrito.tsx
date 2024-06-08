@@ -7,6 +7,8 @@ import useApi from './hook/useApi';
 import CenteredCircularProgress from '../components/CenteredCircularProgress';
 import CrCard from '../components/CrCard';
 import { PaymentContext } from '../store/payment/PaymentContext';
+import CrModal from '../components/CrModal';
+import imgbancolombia  from "../assets/Bancolombia.png";
 
 
 
@@ -18,13 +20,25 @@ interface LocationState {
 const DetalleCarrito = () => 
   {
 
-    const {setProduct,removeProduct, products} = useContext(PaymentContext)
+    const {setProduct,removeProduct, clearProducts ,products} = useContext(PaymentContext)
+    
+    const [open, setOpen] = useState(false);
     
     const history = useHistory()
 
     const handleRetornarHome = () => {
         history.push('/home')
       };
+
+    const handleRemoverProducts = () => {
+      clearProducts()
+      handleRetornarHome()
+    };
+
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
     
     const totalPrecio: number = parseFloat(
       products.reduce((total, producto) => total + (producto.price * producto.quantity), 0).toFixed(2)
@@ -40,8 +54,9 @@ const DetalleCarrito = () =>
         <HomeLayaout handlePayment = {()=>{ }}>
             <Box mt={5} display={'flex'} gap={2} justifyContent={'center'} >
                 <Button>TOTAL = {totalPrecio}</Button>
-                <Button variant="contained">Pagar</Button>
+                <Button variant="contained" onClick={handleClickOpen}>Pagar</Button>
                 <Button variant="contained" onClick={handleRetornarHome}>Retornar</Button>
+                <CrModal open={open} handleClose={handleRemoverProducts} title={"Esta seguro de realizar el pago?"} description={"$" + totalPrecio} image={"src/assets/pse.jpg"} nombreButton= {"Realizar Pago"}></CrModal>
                 
             </Box>
             <Container maxWidth="lg">
