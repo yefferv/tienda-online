@@ -9,4 +9,5 @@ export interface Product {
       rate: number;
       count: number;
     };
+    quantity: number; // Nuevo campo para la cantidad de productos
   }

@@ -24,7 +24,7 @@ interface Props {
 }
 export default function CrCard({ item , handleAddCard, isVisible = true}: Props) {
     const [isCheck, setValor] = useState(true)
-    const {setProduct, removeProduct, products} = useContext(PaymentContext)
+    const {setProduct, removeProduct,updateProductQuantity , products} = useContext(PaymentContext)
     
     //const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
 
@@ -50,6 +50,7 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
     
     const handleCheck = ()=>{
         setValor(!isCheck)
+        item.quantity = 1
         handleAddCard(item)
     }
 
@@ -66,6 +67,11 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
           return description.padEnd(maxLength, ' ');
         }
       }
+
+
+      const handleCountChange = (newCount: number) => {
+        updateProductQuantity(item.id, newCount);
+      }; 
 
   return (
     <>
@@ -104,7 +110,7 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
         }}>
             <CrBtnAccion isShow isCheck={isCheck} handleShow={handleClickOpen } ></CrBtnAccion>
             {isVisible ? (""):
-            (<CrCounter></CrCounter>)
+            (<CrCounter initialCount={item.quantity} onCountChange={handleCountChange} ></CrCounter>)
             }
             
             {isVisible ? (<CrBtnAccion isCheck={isCheck} handleCheck={handleCheck} ></CrBtnAccion>):

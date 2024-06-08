@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "../Auth/AuthContext";
 import useServices from "../services/useServices";
 import { PaymentContext } from "../store/payment/PaymentContext";
+import useApi from "./hook/useApi";
 
 
 
@@ -15,11 +16,10 @@ const Home = () => {
   const {user} = useContext(AuthContext)
   const {setProduct,removeProduct, products} = useContext(PaymentContext)
   //const {data, loading} = useApi(import.meta.env.VITE_API_URL)
-  const {handleFetch, state} = useServices()
+  
+  const {state} = useApi()
 
-  useEffect(()=>{
-    handleFetch()
-  },[])
+  
 
   if (state.error) {
     return (
