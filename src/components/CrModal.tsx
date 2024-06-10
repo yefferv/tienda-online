@@ -6,18 +6,22 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CrGrid from './CrGrid';
+import { Box } from '@mui/material';
 
 
 interface Props {
     open: boolean;
     handleClose: () => void,
+    handleCancelar?: () => void,
     title: string;
     description: string;
     image: string;
     nombreButton: string;
+    nombreButtonCancelar?: string;
+    puedeCancelar?: boolean; 
   }
 
-export default function CrModal({open, handleClose, title, description, image, nombreButton}: Props) {
+export default function CrModal({open, handleClose,handleCancelar, title, description, image, nombreButton,nombreButtonCancelar, puedeCancelar = false}: Props) {
 
 
   return (
@@ -37,10 +41,21 @@ export default function CrModal({open, handleClose, title, description, image, n
 
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} autoFocus>
-            {nombreButton}
-          </Button>
+        <DialogActions sx={{ justifyContent: 'space-between' }}>
+
+        <Box>
+            {puedeCancelar && (
+              <Button onClick={handleCancelar} autoFocus>
+                {nombreButtonCancelar}
+              </Button>
+            )}
+          </Box>
+
+          <Box>
+            <Button onClick={handleClose} autoFocus>
+              {nombreButton}
+            </Button>
+          </Box>
         </DialogActions>
       </Dialog>
     </React.Fragment>

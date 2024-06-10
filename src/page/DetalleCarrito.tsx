@@ -9,6 +9,9 @@ import CrCard from '../components/CrCard';
 import { PaymentContext } from '../store/payment/PaymentContext';
 import CrModal from '../components/CrModal';
 import imgbancolombia  from "../assets/Bancolombia.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 
@@ -31,13 +34,23 @@ const DetalleCarrito = () =>
       };
 
     const handleRemoverProducts = () => {
-      clearProducts()
-      handleRetornarHome()
+      toast.success("Pago realizado correctamente", {
+        position: "bottom-center",
+        autoClose: 1000 ,
+        onClose: () => {
+          clearProducts()
+          handleRetornarHome()
+        }
+      });
     };
 
 
     const handleClickOpen = () => {
       setOpen(true);
+    };
+    
+    const handleCancelar= () => {
+      setOpen(false);
     };
     
     const totalPrecio: number = parseFloat(
@@ -56,8 +69,8 @@ const DetalleCarrito = () =>
                 <Button>TOTAL = {totalPrecio}</Button>
                 <Button variant="contained" onClick={handleClickOpen}>Pagar</Button>
                 <Button variant="contained" onClick={handleRetornarHome}>Retornar</Button>
-                <CrModal open={open} handleClose={handleRemoverProducts} title={"Esta seguro de realizar el pago?"} description={"$" + totalPrecio} image={"src/assets/pse.jpg"} nombreButton= {"Realizar Pago"}></CrModal>
-                
+                <CrModal open={open} handleClose={handleRemoverProducts} handleCancelar={handleCancelar} title={"Desea continuar con el proceso de pago?"} description={"Valor a pagar: $" + totalPrecio} image={"src/assets/pse.jpg"} nombreButton= {"Realizar Pago"} nombreButtonCancelar= {"Cancelar"} puedeCancelar={true}></CrModal>
+                <ToastContainer />
             </Box>
             <Container maxWidth="lg">
                 <Box mt={5} display={'flex'} gap={2} >
