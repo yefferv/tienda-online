@@ -10,6 +10,7 @@ export interface PaymentContextProps {
     setProduct: (item: Product)=> void
     removeProduct: (productId: number)=> void
     updateProductQuantity: (id: number, quantity: number)=>void
+    clearProducts: ()=> void
     products : Product[]
   
 }

@@ -24,7 +24,7 @@ interface Props {
 }
 export default function CrCard({ item , handleAddCard, isVisible = true}: Props) {
     const [isCheck, setValor] = useState(true)
-    const {setProduct, removeProduct,updateProductQuantity , products} = useContext(PaymentContext)
+    const {setProduct, removeProduct,updateProductQuantity, products} = useContext(PaymentContext)
     
     //const [addCardPayment, setAddCardPayment] = useState<Product[]>([])
 
@@ -119,7 +119,7 @@ export default function CrCard({ item , handleAddCard, isVisible = true}: Props)
             
         </CardActions>
         </Card>
-        <CrModal open={open} handleClose={handleClose} title={item.title} description={item.description} image={item.image}></CrModal>
+        <CrModal open={open} handleClose={handleClose} title={item.title} description={item.description} image={item.image} nombreButton= {"Cerrar"}></CrModal>
     </>
   );
 }

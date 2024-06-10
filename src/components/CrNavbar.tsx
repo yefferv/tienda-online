@@ -20,6 +20,7 @@ import { useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../Auth/AuthContext';
 import { PaymentContext } from '../store/payment/PaymentContext';
+import Logo  from "../assets/CarritoCompras.png";
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -173,10 +174,14 @@ export default function CrNavbar({handlePayment}: Props) {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 }}
+            sx={{ 
+              mr: 2,
+              padding: '10x', // Ajusta el padding para hacer el botón más grande
+              borderRadius: '50%' 
+            }}
             onClick={handleReturnHome}
           >
-            <MenuIcon />
+            <img src={Logo} alt="logo" width="55" height="45" style={{ borderRadius: '50%' }} />
           </IconButton>
           <Typography
             variant="h6"
