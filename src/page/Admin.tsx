@@ -1,28 +1,42 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Auth/AuthContext'
 import HomeLayaout from './HomeLayaout'
+import { ProductProvider } from '../store/product/ProductContext'
+import { Container, Typography } from '@mui/material'
+import AddProduct from './Product/AddProduct'
+import ProductList from './Product/ProductList'
+import { Product } from '../types/Product'
+import EditProduct from './Product/EditProduct'
 
 const Admin = () => {
-  const {user} = useContext(AuthContext)
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+
+  const handleEditProduct = (product: Product) => {
+    setEditingProduct(product);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingProduct(null);
+  };
 
   
   return (
-    <div>
+    <ProductProvider>
+      <div>
       <HomeLayaout handlePayment = {()=>{ }}>
-      <div style={{
-        display : 'flex',
-        flexDirection :'column',
-        justifyContent:'center',
-        alignItems:'center',
-        height:'100vh'
-        }}>
-          <p>{user.name}
-
-          </p>
-           Admin
-      </div>
+      <Container sx={{ marginTop: 4 }}>
+        <Typography variant="h4" gutterBottom>
+          Administración Productos
+        </Typography>
+        <AddProduct />
+        <ProductList onEdit={handleEditProduct} />
+        {editingProduct && (
+          <EditProduct product={editingProduct} onCancel={handleCancelEdit} />
+        )}
+      </Container>
       </HomeLayaout>
       </div>
+    </ProductProvider>
   )
 }
 

@@ -127,7 +127,7 @@ export default function CrNavbar({handlePayment}: Props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuAccount}>My account</MenuItem>
+      <MenuItem onClick={handleMenuAccount}>Administración Productos</MenuItem>
       <MenuItem onClick={handleCloseSesion}>Cerrar sesión</MenuItem>
     </Menu>
   );

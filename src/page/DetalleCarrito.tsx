@@ -34,7 +34,7 @@ const DetalleCarrito = () =>
       };
 
     const handleRemoverProducts = () => {
-      toast.success("Pago realizado correctamente", {
+      toast.success("El pago se realizó correctamente", {
         position: "bottom-center",
         autoClose: 1000 ,
         onClose: () => {
